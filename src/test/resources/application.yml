@@ -18,5 +18,5 @@ management:
 
 logging:
   level:
-    com: DEBUG
-    org: DEBUG
+    com: ERROR
+    org: ERROR
