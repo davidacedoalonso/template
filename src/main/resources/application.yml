@@ -1,0 +1,22 @@
+server:
+  servlet:
+    context-path: /some
+    port: 8080
+
+# comprobarlo
+management:
+  server:
+    servlet:
+      context-path: /some
+  port: 8081
+  endpoints:
+    web:
+      basePath: /
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+logging:
+  level:
+    com: DEBUG
+    org: DEBUG

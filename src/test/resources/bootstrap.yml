@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: ${SPRING_CONFIG_PROFILE:name}
+  cloud:
+    config:
+      enable: ${SPRING_CONFIG_ENABLED:false}
+      label: ${SPRING_CONFIG_LABEL:master}
+      uri: ${SPRING_CONFIG_URI:http://localhost:8888}
