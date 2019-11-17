@@ -17,7 +17,7 @@ public class HelloController {
 
     @PostMapping(value = "/some", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity some(@RequestBody String some){
-        return ResponseEntity.ok("OK");
+        return ResponseEntity.ok("{\"test\": \"test1\"}");
     }
 
     @GetMapping(value = "/healthz")

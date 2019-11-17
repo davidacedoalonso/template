@@ -9,12 +9,16 @@ import io.cucumber.datatable.DataTable;
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
 import io.restassured.response.Response;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.springframework.boot.web.server.LocalServerPort;
 
 import java.awt.*;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 import static org.junit.Assert.assertEquals;
 import static org.springframework.http.HttpHeaders.ACCEPT;
@@ -61,5 +65,24 @@ public class StepsDefs extends FeatureConfiguration {
         }
     }
 
+    @Then("Check response:")
+    public void check_json(DataTable dataTable) throws Exception {
+        List<Map<String, String>> expectResult = dataTable.asMaps();
+        for (int i = 0; i < response.size(); i++) {
+            for (Map<String, String> row : expectResult) {
+                String valueExpected = processResponseExpected(i, row.get("Value"));
+                String currentValue = Objects.toString(response.get(i).body().jsonPath().get(row.get("Field")), "null");
+                assertEquals(valueExpected, currentValue);
+            }
+        }
+    }
 
+    private String processResponseExpected(int i, String value) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+        if (value.startsWith("request(")) {
+            String requestKey = value.substring(value.indexOf("(") + 1, value.indexOf(")"));
+            return (String) PropertyUtils.getNestedProperty(request.get(i), requestKey);
+        } else {
+            return value;
+        }
+    }
 }

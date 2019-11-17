@@ -7,3 +7,6 @@ Feature: Requirement
        | Field | Request1 |
       When I make a post call
       Then The response status should be 200
+      Then Check response:
+      | Field | Value |
+      | test  | test  |
