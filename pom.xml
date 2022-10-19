@@ -21,7 +21,7 @@
     <properties>
         <java.version>1.8</java.version>
         <cucumber.version>4.3.0</cucumber.version>
-        <jackson.version>2.10.0</jackson.version>
+        <jackson.version>2.13.4.1</jackson.version>
         <sonar.projectKey>davidacedoalonso_template</sonar.projectKey>
         <sonar.organization>davidacedoalonso</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
